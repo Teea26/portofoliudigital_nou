@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teea - Creative Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .candy-gradient {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab, #ffa8c5, #ffc2d4);
+        }
+        
+        .candy-card {
+            background: linear-gradient(145deg, #f48fb1, #e91e63);
+            box-shadow: 
+                20px 20px 40px rgba(233, 30, 99, 0.3),
+                -20px -20px 40px rgba(244, 143, 177, 0.8),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            transition: all 1.5s ease;
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        
+        .candy-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                25px 25px 50px rgba(233, 30, 99, 0.4),
+                -25px -25px 50px rgba(244, 143, 177, 0.9),
+                inset 5px 5px 15px rgba(255, 255, 255, 0.4);
+        }
+        
+        .candy-card.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-120px);
+            transition: all 2s ease;
+        }
+        
+        .slide-left.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-up {
+            opacity: 0;
+            transform: translateY(120px);
+            transition: all 2s ease;
+        }
+        
+        .slide-up.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .candy-button {
+            background: linear-gradient(145deg, #e91e63, #f06292);
+            box-shadow: 
+                8px 8px 16px rgba(233, 30, 99, 0.3),
+                -8px -8px 16px rgba(244, 143, 177, 0.8);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .candy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                10px 10px 20px rgba(233, 30, 99, 0.4),
+                -10px -10px 20px rgba(244, 143, 177, 0.9);
+        }
+        
+        .floating-circle {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(145deg, #f48fb1, #e91e63);
+            border-radius: 50%;
+            box-shadow: 
+                20px 20px 40px rgba(233, 30, 99, 0.3),
+                -20px -20px 40px rgba(244, 143, 177, 0.8),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.3);
+            animation: float 6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating-candy {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-candy:nth-child(2) {
+            animation-delay: -2s;
+        }
+        
+        .floating-candy:nth-child(3) {
+            animation-delay: -4s;
+        }
+        
+        .floating-candy:nth-child(4) {
+            animation-delay: -1s;
+        }
+        
+        .floating-candy:nth-child(5) {
+            animation-delay: -3s;
+        }
+        
+        .floating-candy:nth-child(6) {
+            animation-delay: -5s;
+        }
+        
+        .floating-lollipop {
+            animation: lollipopFloat 8s ease-in-out infinite;
+        }
+        
+        .floating-lollipop:nth-child(8) {
+            animation-delay: -1s;
+        }
+        
+        .floating-lollipop:nth-child(9) {
+            animation-delay: -3s;
+        }
+        
+        .floating-lollipop:nth-child(10) {
+            animation-delay: -5s;
+        }
+        
+        .floating-lollipop:nth-child(11) {
+            animation-delay: -7s;
+        }
+        
+        .floating-lollipop:nth-child(12) {
+            animation-delay: -2s;
+        }
+        
+        @keyframes lollipopFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(3deg); }
+            50% { transform: translateY(-25px) rotate(-2deg); }
+            75% { transform: translateY(-10px) rotate(4deg); }
+        }
+        
+        .lollipop-candy {
+            position: relative;
+            width: 35px;
+            height: 35px;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 30%, transparent 60%),
+                radial-gradient(circle at 75% 75%, rgba(255, 192, 203, 0.4) 0%, transparent 50%),
+                conic-gradient(from 45deg, #ff1493 0%, #ff69b4 25%, #ffb6c1 50%, #ff1493 75%, #ff69b4 100%);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 
+                0 6px 15px rgba(255, 20, 147, 0.25),
+                0 2px 8px rgba(255, 20, 147, 0.15),
+                inset 0 2px 4px rgba(255, 255, 255, 0.5),
+                inset 0 -1px 3px rgba(255, 20, 147, 0.2);
+        }
+        
+        .lollipop-candy::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 7px;
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 40%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(0.5px);
+        }
+        
+        .lollipop-candy::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 18px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 30%, #e0e0e0 70%, #d0d0d0 100%);
+            border-radius: 1px;
+            transform: translateX(-50%) translateY(14px);
+            box-shadow: 
+                0 1px 3px rgba(0, 0, 0, 0.2),
+                inset 0 0.5px 1px rgba(255, 255, 255, 0.8);
+        }
+        
+        .glass-candy {
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 25%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 35%),
+                linear-gradient(135deg, 
+                    #ff69b4 0%,
+                    #ff8fa3 25%,
+                    #ffb3ba 50%,
+                    #ffc1cc 75%,
+                    #ffd1dc 100%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 4px 12px rgba(255, 105, 180, 0.2),
+                0 2px 6px rgba(255, 105, 180, 0.1),
+                inset 0 1px 2px rgba(255, 255, 255, 0.6),
+                inset 0 -1px 2px rgba(255, 105, 180, 0.15);
+            position: relative;
+        }
+        
+        .glass-candy::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 30%;
+            height: 30%;
+            background: radial-gradient(ellipse at 40% 40%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 30%, transparent 60%);
+            border-radius: 50%;
+            filter: blur(0.3px);
+        }
+        
+        .glass-candy::after {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            right: 25%;
+            width: 20%;
+            height: 20%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 40%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .candy-3d {
+            background: linear-gradient(145deg, #f06292, #f48fb1);
+            box-shadow: 
+                15px 15px 30px rgba(233, 30, 99, 0.3),
+                -15px -15px 30px rgba(244, 143, 177, 0.8),
+                inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+                inset -3px -3px 6px rgba(233, 30, 99, 0.1);
+            border-radius: 20px;
+        }
+        
+        .skill-bar {
+            background: linear-gradient(90deg, #e91e63, #f06292, #f48fb1);
+            border-radius: 10px;
+            height: 8px;
+            transition: none;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background: linear-gradient(145deg, #f48fb1, #e91e63);
+            border-radius: 25px;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            box-shadow: 
+                20px 20px 40px rgba(233, 30, 99, 0.3),
+                -20px -20px 40px rgba(244, 143, 177, 0.8);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: scale(0.8) translateY(-50px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        
+        .candy-text {
+            background: linear-gradient(135deg, #e91e63, #f06292, #f48fb1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        .spaced-text {
+            letter-spacing: 0.15em;
+            word-spacing: 0.2em;
+        }
+        
+        .title-candy {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, transparent 40%),
+                radial-gradient(circle at 70% 70%, rgba(244, 143, 177, 0.6) 0%, transparent 50%),
+                linear-gradient(135deg, #e91e63 0%, #ffffff 30%, #f06292 60%, #f48fb1 100%);
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 8px 25px rgba(233, 30, 99, 0.4),
+                0 4px 15px rgba(233, 30, 99, 0.2),
+                inset 0 2px 8px rgba(255, 255, 255, 0.6),
+                inset 0 -2px 8px rgba(233, 30, 99, 0.2);
+            animation: candyGlow 3s ease-in-out infinite alternate;
+        }
+        
+        .title-candy::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 12px;
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 50%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+        
+        .title-candy::after {
+            content: '';
+            position: absolute;
+            bottom: 12px;
+            right: 15px;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(0.5px);
+        }
+        
+        @keyframes candyGlow {
+            0% { 
+                box-shadow: 
+                    0 8px 25px rgba(233, 30, 99, 0.4),
+                    0 4px 15px rgba(233, 30, 99, 0.2),
+                    inset 0 2px 8px rgba(255, 255, 255, 0.6),
+                    inset 0 -2px 8px rgba(233, 30, 99, 0.2);
+            }
+            100% { 
+                box-shadow: 
+                    0 12px 35px rgba(233, 30, 99, 0.6),
+                    0 6px 20px rgba(233, 30, 99, 0.3),
+                    inset 0 3px 12px rgba(255, 255, 255, 0.8),
+                    inset 0 -3px 12px rgba(233, 30, 99, 0.3);
+            }
+        }
+        
+        .title-candy-left {
+            left: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .title-candy-right {
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .portfolio-item {
+            background: linear-gradient(145deg, #f48fb1, #f06292);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 
+                15px 15px 30px rgba(233, 30, 99, 0.2),
+                -15px -15px 30px rgba(244, 143, 177, 0.7);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .portfolio-item:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                20px 20px 40px rgba(233, 30, 99, 0.3),
+                -20px -20px 40px rgba(244, 143, 177, 0.8);
+        }
+        
+        .portfolio-item.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .portfolio-btn.active {
+            background: linear-gradient(145deg, #ad1457, #e91e63);
+            transform: translateY(-2px);
+            box-shadow: 
+                10px 10px 20px rgba(233, 30, 99, 0.4),
+                -10px -10px 20px rgba(244, 143, 177, 0.9);
+        }
+        
+        .floating-shape {
+            position: absolute;
+            animation: floatShape 8s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(1) { animation-delay: 0s; }
+        .floating-shape:nth-child(2) { animation-delay: -2s; }
+        .floating-shape:nth-child(3) { animation-delay: -4s; }
+        
+        @keyframes floatShape {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+        
+        .heart-shape {
+            width: 60px;
+            height: 54px;
+            background: none;
+            border: 3px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+            transform: rotate(-45deg);
+            border-radius: 0 0 0 30px;
+        }
+        
+        .heart-shape:before,
+        .heart-shape:after {
+            content: '';
+            width: 39px;
+            height: 60px;
+            position: absolute;
+            left: 30px;
+            top: 0;
+            background: none;
+            border: 3px solid rgba(255, 255, 255, 0.7);
+            border-radius: 30px 30px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        
+        .heart-shape:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        
+        .star-shape {
+            width: 60px;
+            height: 60px;
+            background: none;
+            border: 3px solid rgba(255, 255, 255, 0.7);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        
+        .diamond-shape {
+            width: 60px;
+            height: 60px;
+            background: none;
+            border: 3px solid rgba(255, 255, 255, 0.7);
+            transform: rotate(45deg);
+            border-radius: 8px;
+        }
+        
+        .trophy {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="candy-gradient min-h-screen">
+    <!-- Floating Candy Decorations -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="floating-candy glass-candy absolute top-20 left-10 w-8 h-8 rounded-full"></div>
+        <div class="floating-candy glass-candy absolute top-40 right-20 w-6 h-6 rounded-full"></div>
+        <div class="floating-candy glass-candy absolute bottom-32 left-1/4 w-10 h-10 rounded-full"></div>
+        <div class="floating-candy glass-candy absolute bottom-20 right-1/3 w-7 h-7 rounded-full"></div>
+        <div class="floating-candy glass-candy absolute top-1/3 left-1/2 w-5 h-5 rounded-full"></div>
+        <div class="floating-candy glass-candy absolute top-2/3 right-10 w-9 h-9 rounded-full"></div>
+        
+        <!-- Pink Lollipop Candies -->
+        <div class="floating-lollipop absolute top-32 right-32">
+            <div class="lollipop-candy"></div>
+        </div>
+        <div class="floating-lollipop absolute bottom-40 left-20">
+            <div class="lollipop-candy"></div>
+        </div>
+        <div class="floating-lollipop absolute top-1/2 right-16">
+            <div class="lollipop-candy"></div>
+        </div>
+        <div class="floating-lollipop absolute bottom-60 right-1/4">
+            <div class="lollipop-candy"></div>
+        </div>
+        <div class="floating-lollipop absolute top-60 left-1/3">
+            <div class="lollipop-candy"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10 py-8">
+        <nav class="container mx-auto px-6">
+            <div class="candy-card p-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-3xl font-bold text-white">Teea</h1>
+                    <div class="flex space-x-6 items-center">
+                        <a href="#acasa" class="text-white hover:text-pink-100 transition-colors">Acasă</a>
+                        <a href="#despre" class="text-white hover:text-pink-100 transition-colors">Despre</a>
+                        <a href="#portofoliu" class="text-white hover:text-pink-100 transition-colors">Portofoliu</a>
+                        <a href="#abilitati" class="text-white hover:text-pink-100 transition-colors">Abilități</a>
+                        <a href="#contact" class="text-white hover:text-pink-100 transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="acasa" class="relative z-10 py-20">
+        <div class="container mx-auto px-6 text-center">
+            <!-- Floating Circle with Image -->
+            <div class="flex justify-center mb-8">
+                <div class="floating-circle">
+                    <img src="teea.JPG" alt="Teea" class="w-full h-full object-cover rounded-full border-4 border-white border-opacity-30">
+                </div>
+            </div>
+            
+            <div class="candy-card p-12 max-w-4xl mx-auto">
+                <h2 class="text-6xl font-bold text-white mb-6">
+                    Bun venit în lumea mea!
+                </h2>
+                <p class="text-lg text-pink-100 mb-8 leading-relaxed spaced-text opacity-70">
+                    Eu sunt Teea, un creator de conținut care iubește să transforme ideile în magie digitală. Te invit să te alături acestei călătorii creative pline de culoare și inspirație!
+                </p>
+                <div class="flex space-x-4 justify-center">
+                    <button id="startAdventure" class="candy-button px-8 py-4 text-white font-semibold text-lg">
+                         🩷 Începe Aventura
+                    </button>
+                    <button id="openCV" class="candy-button px-8 py-4 text-white font-semibold text-lg">
+                         🩷 Deschide CV
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Modal -->
+    <div id="cvModal" class="modal">
+        <div class="modal-content" style="max-width: 95%; max-height: 95%;">
+            <div class="flex justify-between items-center mb-6">
+                 <h3 class="text-3xl font-bold text-white"> Curriculum Vitae </h3>
+                <button id="closeCVModal" class="candy-button px-4 py-2 text-white font-medium">✕</button>
+            </div>
+            <div id="cvContent" class="bg-white rounded-lg p-8 min-h-[600px] overflow-y-auto">
+                <div class="text-center text-gray-600 text-lg">
+                    <style>
+  .fara-spatiu {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+  }
+
+  .fara-spatiu img {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+<div class="fara-spatiu">
+  <img src="cvp1.png">
+  <img src="cvp2.png">
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content" style="max-width: 95%; max-height: 95%;">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="galleryTitle" class="text-3xl font-bold text-white">🎨 Gallery</h3>
+                <button id="closeGalleryModal" class="candy-button px-4 py-2 text-white font-medium">✕</button>
+            </div>
+            <div id="galleryContent" class="overflow-y-auto max-h-[70vh]">
+                <!-- Gallery content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Full View Modal -->
+    <div id="fullViewModal" class="modal">
+        <div class="modal-content" style="max-width: 90%; max-height: 90%;">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="fullViewTitle" class="text-2xl font-bold text-white">Project View</h3>
+                <button id="closeFullViewModal" class="candy-button px-4 py-2 text-white font-medium">✕</button>
+            </div>
+            <div id="fullViewContent" class="text-center">
+                <!-- Full view content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Video View Modal -->
+    <div id="videoViewModal" class="modal">
+        <div class="modal-content" style="max-width: 90%; max-height: 90%;">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="videoViewTitle" class="text-2xl font-bold text-white">Video Player</h3>
+                <button id="closeVideoViewModal" class="candy-button px-4 py-2 text-white font-medium">✕</button>
+            </div>
+            <div id="videoViewContent" class="text-center">
+                <!-- Video content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="despre" class="relative z-10 py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 relative">
+                <h3 class="text-4xl font-bold candy-text mb-4 relative z-10">Despre acest creator</h3>
+                
+                <!-- Floating Shapes positioned around title -->
+                <div class="floating-shape absolute" style="left: calc(50% - 150px); top: -10px; z-index: 5;">
+                    <div class="heart-shape"></div>
+                </div>
+                <div class="floating-shape absolute" style="left: 50%; top: -20px; transform: translateX(-50%); z-index: 5;">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="floating-shape absolute" style="left: calc(50% + 100px); top: -10px; z-index: 5;">
+                    <div class="diamond-shape"></div>
+                </div>
+                
+                <p class="text-xl text-white spaced-text">
+                    Descoperă omulețul din spatele creativității!
+                </p>
+            </div>
+            
+            <!-- Statistics -->
+            <div class="candy-card p-8 mb-8 slide-up">
+                 <h4 class="text-2xl font-bold text-white mb-6 text-center">
+  <img src="lolemoji.png" alt="Statistici"
+       class="inline-block align-middle w-[3em] h-[3em] mr-4">
+  Statistici Creator </h4>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-white font-medium">Creativitate</span>
+                            <span class="text-pink-100">95/100</span>
+                        </div>
+                        <div class="bg-pink-200 rounded-full h-2">
+                            <div class="skill-bar w-[95%] h-full"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-white font-medium">Abilități Tehnice</span>
+                            <span class="text-pink-100">88/100</span>
+                        </div>
+                        <div class="bg-pink-200 rounded-full h-2">
+                            <div class="skill-bar w-[88%] h-full"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-white font-medium">Comunicare</span>
+                            <span class="text-pink-100">100/100</span>
+                        </div>
+                        <div class="bg-pink-200 rounded-full h-2">
+                            <div class="skill-bar w-[100%] h-full"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-white font-medium">Rezolvare Probleme</span>
+                            <span class="text-pink-100">95/100</span>
+                        </div>
+                        <div class="bg-pink-200 rounded-full h-2">
+                            <div class="skill-bar w-[95%] h-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Info Card -->
+            <div class="candy-card p-8 mb-8 slide-left">
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <h5 class="text-lg font-bold text-white mb-2">Specializare</h5>
+                        <p class="text-pink-100 spaced-text">Producție media</p>
+                    </div>
+                    <div>
+                        <h5 class="text-lg font-bold text-white mb-2">Locația de Bază</h5>
+                        <p class="text-pink-100 spaced-text"> Cluj-Napoca </p>
+                    </div>
+                    <div>
+                        <h5 class="text-lg font-bold text-white mb-2">Realizare</h5>
+                        <p class="text-pink-100 spaced-text"> Maestru al narațiunii vizuale
+</p>
+                    </div>
+                    <div>
+                        <h5 class="text-lg font-bold text-white mb-2">Pasiune</h5>
+                        <p class="text-pink-100 spaced-text">Aducerea ideilor la viață</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Achievements -->
+            <div class="candy-card p-8 slide-up">
+                <h4 class="text-2xl font-bold text-white mb-6 text-center">
+  <img src="trofeu.png" alt="Realizări"
+       class="inline-block align-middle w-[5em] h-[4em] mr-4"> Realizări Recente
+</h4>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div>
+                       <div class="flex flex-col items-center">
+  <img src="cro.png" class="w-35 h-20 mb-2" alt="Trofeu">
+  <p class="text-white font-bold text-sm text-center"></p>
+</div>
+                        <h5 class="text-lg font-bold text-white">Regina Conținutului</h5>
+                    </div>
+                    <div>
+                        <div class="flex flex-col items-center">
+  <img src="bec.png" class="w-35 h-20 mb-2" alt="Trofeu">
+  <p class="text-white font-bold text-sm text-center"></p></div>
+                        <h5 class="text-lg font-bold text-white">Inovator Digital</h5>
+                    </div>
+                    <div>
+                        <div class="flex flex-col items-center">
+  <img src="hsh.png" class="w-35 h-20 mb-2" alt="Trofeu">
+  <p class="text-white font-bold text-sm text-center"></p></div>
+                        <h5 class="text-lg font-bold text-white">Colaborator</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portofoliu" class="relative z-10 py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-4xl font-bold candy-text mb-8">Proiectele mele</h3>
+                
+                <!-- Category Buttons -->
+                <div class="flex justify-center space-x-4 mb-8">
+                    <button class="portfolio-btn candy-button px-6 py-3 text-white font-medium active flex items-center space-x-2" data-category="design">
+                        <img src="aca1.png" alt="Design" class="w-12.5 h-14 rounded-full object-contain">
+                        <span>Design</span>
+                    </button>
+                    <button class="portfolio-btn candy-button px-6 py-3 text-white font-medium flex items-center space-x-2" data-category="video">
+                        <img src="aca2.png" alt="Video" class="w-12.5 h-14 rounded-full object-contain">
+                        <span>Video</span>
+                    </button>
+                    <button class="portfolio-btn candy-button px-6 py-3 text-white font-medium flex items-center space-x-2" data-category="foto">
+                        <img src="aca1.png" alt="Foto" class="w-12.5 h-14 rounded-full object-contain">
+                        <span>Foto</span>
+                    </button>
+                    <button class="portfolio-btn candy-button px-6 py-3 text-white font-medium flex items-center space-x-2" data-category="colaborari">
+                        <img src="aca3.png" alt="Colaborări" class="w-12.5 h-14 rounded-full object-contain">
+                        <span>Colaborări</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Portfolio Preview -->
+            <div class="portfolio-gallery grid grid-cols-3 gap-6 mb-8">
+                <!-- Design Previews -->
+                <div class="portfolio-item slide-up">
+                    <div class="candy-card relative h-64 rounded-xl overflow-hidden flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <img src="h1.jpg" alt="" class=" w-full h-full mx-auto" />
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item slide-up">
+                    <div class="candy-card relative h-64 rounded-xl overflow-hidden flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <img src="h4.jpg" alt="" class=" w-full h-full mx-auto" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video Previews -->
+                <div class="portfolio-item slide-up">
+                    <div class="candy-card relative h-64 rounded-xl overflow-hidden flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <img src="h5.jpg" alt="" class=" w-full h-full mx-auto" />
+                        </div>
+                    </div>
+                </div>
+               <div class="portfolio-item slide-up">
+                    <div class="candy-card relative h-64 rounded-xl overflow-hidden flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <img src="h2.jpg" alt="" class=" w-full h-full mx-auto" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo Previews -->
+               <div class="portfolio-item slide-up">
+                    <div class="candy-card relative h-64 rounded-xl overflow-hidden flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <img src="h3.jpg" alt="" class=" w-full h-full mx-auto" />
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item slide-up">
+                    <div class="candy-card relative h-64 rounded-xl overflow-hidden flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <img src="h6.jpg" alt="" class=" w-full h-full mx-auto" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="abilitati" class="relative z-10 py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-4xl font-bold candy-text mb-4 spaced-text">Abilități & Power - Ups</h3>
+                <p class="text-xl text-white">Urcă în nivel cu mine pe măsură ce dobândesc abilități noi în universul creativ!</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <!-- Technical Skills -->
+                <div class="candy-card p-8 slide-left">
+                    <h4 class="text-2xl font-bold text-white mb-6 text-center">⚙️ Abilități Tehnice</h4>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-medium">Editare video - audio</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-yellow-300">⭐⭐⭐⭐⭐</span>
+                                    <span class="text-pink-100">nivel 9</span>
+                                </div>
+                            </div>
+                            <div class="bg-pink-200 rounded-full h-3">
+                                <div class="skill-bar w-[90%] h-full"></div>
+                            </div>
+                            <p class="text-pink-100 text-sm mt-1">90/100 XP</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-medium">Design grafic</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-yellow-300">⭐⭐⭐⭐⭐</span>
+                                    <span class="text-pink-100">nivel 8</span>
+                                </div>
+                            </div>
+                            <div class="bg-pink-200 rounded-full h-3">
+                                <div class="skill-bar w-[85%] h-full"></div>
+                            </div>
+                            <p class="text-pink-100 text-sm mt-1">85/100 XP</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-medium">Fotografie</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-yellow-300">⭐⭐⭐⭐⭐</span>
+                                    <span class="text-pink-100">nivel 10</span>
+                                </div>
+                            </div>
+                            <div class="bg-pink-200 rounded-full h-3">
+                                <div class="skill-bar w-[100%] h-full"></div>
+                            </div>
+                            <p class="text-pink-100 text-sm mt-1">100/100 XP</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-medium">Dezvoltare Web</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-yellow-300">⭐⭐⭐⭐⭐</span>
+                                    <span class="text-pink-100">nivel 7</span>
+                                </div>
+                            </div>
+                            <div class="bg-pink-200 rounded-full h-3">
+                                <div class="skill-bar w-[75%] h-full"></div>
+                            </div>
+                            <p class="text-pink-100 text-sm mt-1">75/100 XP</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Creative Skills -->
+                <div class="candy-card p-8 slide-left">
+                    <h4 class="text-2xl font-bold text-white mb-6 text-center">🎨 Abilități Creative</h4>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-medium">Gândire Creativă</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-yellow-300">⭐⭐⭐⭐⭐</span>
+                                    <span class="text-pink-100">nivel 9</span>
+                                </div>
+                            </div>
+                            <div class="bg-pink-200 rounded-full h-3">
+                                <div class="skill-bar w-[90%] h-full"></div>
+                            </div>
+                            <p class="text-pink-100 text-sm mt-1">90/100 XP</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-medium">Povestire</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-yellow-300">⭐⭐⭐⭐⭐</span>
+                                    <span class="text-pink-100">nivel 8</span>
+                                </div>
+                            </div>
+                            <div class="bg-pink-200 rounded-full h-3">
+                                <div class="skill-bar w-[80%] h-full"></div>
+                            </div>
+                            <p class="text-pink-100 text-sm mt-1">80/100 XP</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-medium">Strategie brand</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-yellow-300">⭐⭐⭐⭐⭐</span>
+                                    <span class="text-pink-100">nivel 10</span>
+                                </div>
+                            </div>
+                            <div class="bg-pink-200 rounded-full h-3">
+                                <div class="skill-bar w-[100%] h-full"></div>
+                            </div>
+                            <p class="text-pink-100 text-sm mt-1">100/100 XP</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-medium">Management proiecte</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-yellow-300">⭐⭐⭐⭐⭐</span>
+                                    <span class="text-pink-100">nivel 7</span>
+                                </div>
+                            </div>
+                            <div class="bg-pink-200 rounded-full h-3">
+                                <div class="skill-bar w-[70%] h-full"></div>
+                            </div>
+                            <p class="text-pink-100 text-sm mt-1">70/100 XP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Future Objectives -->
+            <div class="candy-card p-8 slide-up">
+                <h4 class="text-2xl font-bold text-white mb-8 text-center spaced-text"> <img src="lolemoji.png" alt="Obiective" class="inline-block align-middle w-[3rm] h-[3em] mr-4"> Obiective viitoare</h4>
+                <div class="grid grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto mb-4 candy-3d rounded-full flex items-center justify-center overflow-hidden">
+  <img src="jeleu1.png" alt="jeleu1" class="w-16 h-16 object-contain" />
+</div>
+                        <h5 class="text-lg font-bold text-white mb-2">Branding vizual </h5>
+                        <p class="text-pink-100 text-sm">Dezvoltarea unei cariere în care creativitatea și mesajul autentic se îmbină</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto mb-4 candy-3d rounded-full flex items-center justify-center overflow-hidden">
+  <img src="jeleu2.png" alt="jeleu2" class="w-16 h-16 object-contain" />
+</div>
+                        <h5 class="text-lg font-bold text-white mb-2">Emoție digitală</h5>
+                        <p class="text-pink-100 text-sm">Crearea de conținut care nu doar atrage, ci și atinge prin storytelling </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto mb-4 candy-3d rounded-full flex items-center justify-center overflow-hidden">
+  <img src="jeleu3.png" alt="jeleu3" class="w-16 h-16 object-contain" />
+</div>
+                        <h5 class="text-lg font-bold text-white mb-2">Prezență distinctă</h5>
+                        <p class="text-pink-100 text-sm">Implementarea metodelor inovatoare pentru a da voce proiectelor cu personalitate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative z-10 py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-4xl font-bold candy-text mb-4 spaced-text">Să Creăm Împreună</h3>
+                <p class="text-xl text-white spaced-text">Primii pași ai unui drum plin de idei noi și energie proaspătă</p>
+            </div>
+            
+            <!-- Ready to Level Up Card -->
+            <div class="candy-card p-8 mb-8 text-center slide-up">
+                <h4 class="text-3xl font-bold text-white mb-4">Ready to Level Up?</h4>
+                <p class="text-lg text-pink-100">Hai să ridicăm ștacheta și să dăm start la ceva cu adevărat remarcabil, pas cu pas!</p>
+            </div>
+            
+           <!-- Contact Info Card -->
+<div class="candy-card p-8 slide-up">
+    <h4 class="text-2xl font-bold text-white mb-6 text-center">Contact </h4>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-center text-center">
+        <div>
+            <div class="mb-4 flex justify-center">
+                <img src="email.png" alt="Email" class="w-20 h-20 object-cover rounded-lg">
+            </div>
+            <h5 class="text-lg font-bold text-white mb-2">Email</h5>
+            <p class="text-pink-100">timeacz26@gmail.com</p>
+        </div>
+        <div>
+            <div class="mb-4 flex justify-center">
+                <img src="telefon.png" alt="Telefon" class="w-20 h-20 object-cover rounded-lg">
+            </div>
+            <h5 class="text-lg font-bold text-white mb-2">Telefon</h5>
+            <p class="text-pink-100">0745 215 042</p>
+        </div>
+    </div>
+</div>
+
+    </section>
+
+    <!-- Footer -->
+     <footer class="relative z-10 py-12">
+        <div class="container mx-auto px-6">
+            <div class="candy-card p-8">
+                <div class="grid md:grid-cols-3 gap-8 mb-8">
+                    <!-- Left Section -->
+                    <div>
+                        <h4 class="text-2xl font-bold text-white mb-4">Teea</h4>
+                        <p class="text-pink-100">Making the digital world more colorful, one creative project at a time!</p>
+                    </div>
+                    
+                    <!-- Center Section -->
+                    <div class="text-center">
+                        <h4 class="text-xl font-bold text-white mb-4">Quick Links</h4>
+                        <div class="space-y-2">
+                            <a href="#acasa" class="block text-pink-100 hover:text-white transition-colors">Acasă</a>
+                            <a href="#despre" class="block text-pink-100 hover:text-white transition-colors">Despre</a>
+                            <a href="#portofoliu" class="block text-pink-100 hover:text-white transition-colors">Portofoliu</a>
+                            <a href="#abilitati" class="block text-pink-100 hover:text-white transition-colors">Abilități</a>
+                            <a href="#contact" class="block text-pink-100 hover:text-white transition-colors">Contact</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Section -->
+                    <div class="text-right">
+                        <h4 class="text-xl font-bold text-white mb-4">Let's Create!</h4>
+                        <p class="text-pink-100">Ai o idee genială? Hai să o aducem la viață împreună!</p>
+                    </div>
+                </div>
+                
+                <!-- Divider Line -->
+                <div class="border-t border-pink-300 opacity-30 mb-6"></div>
+                
+                <!-- Copyright -->
+                <div class="text-center text-pink-100">
+                    <p class="mb-2">© 2025 Teea - Portofoliu. Made with 🩷 and lots of creativity!</p>
+                    <p class="text-sm">Designed to inspire and built to impress </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Start Adventure button
+        document.getElementById('startAdventure').addEventListener('click', function() {
+            document.querySelector('#despre').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Interactive button effects
+        document.querySelectorAll('.candy-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Add a ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.marginLeft = '-10px';
+                ripple.style.marginTop = '-10px';
+                
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // CV Modal functions
+        function openCV() {
+            const modal = document.getElementById('cvModal');
+            modal.classList.add('show');
+        }
+
+        function closeCV() {
+            const modal = document.getElementById('cvModal');
+            modal.classList.remove('show');
+        }
+
+        // CV Modal event listeners
+        document.getElementById('openCV').addEventListener('click', openCV);
+        document.getElementById('closeCVModal').addEventListener('click', closeCV);
+        document.getElementById('cvModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCV();
+            }
+        });
+
+        // Gallery Modal event listeners
+        document.getElementById('closeGalleryModal').addEventListener('click', closeGalleryModal);
+        document.getElementById('galleryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGalleryModal();
+            }
+        });
+
+        // Full View Modal event listeners
+        document.getElementById('closeFullViewModal').addEventListener('click', closeFullViewModal);
+        document.getElementById('fullViewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFullViewModal();
+            }
+        });
+
+        // Video View Modal event listeners
+        document.getElementById('closeVideoViewModal').addEventListener('click', closeVideoViewModal);
+        document.getElementById('videoViewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoViewModal();
+            }
+        });
+
+        // Scroll Animation Observer with slower animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Gallery Modal Functions
+        function openGalleryModal(category) {
+            const modal = document.getElementById('galleryModal');
+            const title = document.getElementById('galleryTitle');
+            const content = document.getElementById('galleryContent');
+            
+            // Set title based on category
+            const titles = {
+                'design': 'Design',
+                'video': 'Videoclipuri', 
+                'foto': 'Fotografii',
+                'colaborari': 'Colaborări'
+            };
+            title.textContent = titles[category];
+            
+            // Generate gallery content with thumbnails
+            let galleryHTML = '<div class="grid grid-cols-5 gap-4">';
+            
+            if (category === 'design') {
+                for (let i = 1; i <= 17; i++) {
+                    const icons = ['', '', '', '', '', '', '', '', '', ''];
+                    const colors = ['from-pink-400 to-purple-500', 'from-blue-400 to-indigo-500', 'from-green-400 to-teal-500', 'from-yellow-400 to-orange-500', 'from-red-400 to-pink-500'];
+                    galleryHTML += `
+                        <div class="thumbnail-item cursor-pointer w-full max-w-xs" onclick="openFullView('design', ${i}, '', 'Design ${i}')">
+  <div class="bg-white bg-pink-800/50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-1">
+    <img src="design/design${i}.jpg" alt="design${i}" class="w-full h-68 object-cover rounded-lg" />
+  </div>
+</div>
+
+                    `;
+                }
+            } else if (category === 'video') {
+                for (let i = 1; i <= 20; i++) {
+                    const icons = ['', '', '', '', '', '', '', '', '', ''];
+                    galleryHTML += `
+  <div class="thumbnail-item cursor-pointer" onclick="openVideoView(${i}, '${icons[i % icons.length]}', 'Video ${i}', 'videos/videos${i}.mp4')">
+        <div class="bg-pink-800/50 rounded-lg p-0 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div class="h-32 overflow-hidden rounded-lg border-2 border-pink-800/50 border-opacity-30 relative hover:scale-105 transition-transform duration-300">
+              <video
+          class="w-full h-full object-cover"
+          muted
+          preload="metadata"
+          poster="thumbnails/thumb${i}.jpg"
+          src="videos/videos${i}.mp4"
+          tabindex="-1"
+          playsinline
+        ></video>
+            <div class="absolute top-2 right-2 text-white text-xs bg-black bg-opacity-50 px-1 rounded">▶</div>
+          </div>
+    </div>
+  </div>
+`;
+
+                }
+            } else if (category === 'foto') {
+                for (let i = 1; i <= 40; i++) {
+                    const icons = ['', '', '', '', '', '', '', '', '', ''];
+                    const colors = ['from-teal-400 to-blue-500', 'from-pink-400 to-rose-500', 'from-purple-400 to-pink-500', 'from-indigo-400 to-purple-500', 'from-cyan-400 to-teal-500'];
+
+                    galleryHTML += `
+                       <div class="thumbnail-item cursor-pointer w-full max-w-xs" onclick="openFullView('foto', ${i}, '', 'Foto ${i}')">
+                             <div class="bg-pink-800/50 rounded-lg p-1 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <img src="foto/foto${i}.jpg" alt="foto${i}" class="w-full h-auto max-h-62 object-cover rounded" />
+                </div>
+                        </div>
+                    `;
+                }
+            } else if (category === 'colaborari') {
+                for (let i = 1; i <= 4; i++) {
+                    const icons = ['', '', '', '', '', '', '', '', '', ''];
+                    const colors = ['from-orange-400 to-red-500', 'from-green-400 to-emerald-500', 'from-blue-400 to-purple-500', 'from-pink-400 to-indigo-500', 'from-yellow-400 to-orange-500'];
+                    galleryHTML += `
+                        <div class="thumbnail-item cursor-pointer" onclick="openFullView('colaborari', ${i}, '${icons[i % icons.length]}', 'Colab ${i}')">
+                            <div class="bg-white bg-pink-800/50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-1">
+    <img src="colaborari/colaborari${i}.jpg" alt="colaborari${i}" class="w-full h-68 object-cover rounded-lg" />
+  </div>
+</div>
+                    `;
+                }
+            }
+            
+            galleryHTML += '</div>';
+            content.innerHTML = galleryHTML;
+            
+            modal.classList.add('show');
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('show');
+        }
+
+        // Full View Modal Functions
+        function openFullView(category, id, icon, title) {
+            const modal = document.getElementById('fullViewModal');
+            const titleElement = document.getElementById('fullViewTitle');
+            const content = document.getElementById('fullViewContent');
+            
+            titleElement.textContent = title;
+            
+            // Create full view content
+const imageSrc = `${category}/${category}${id}.jpg`;
+            let fullViewHTML = `
+                <div class=" p-8 max-w-2xl mx-auto">
+          
+                    <img id="fullViewImage" src="${imageSrc}" alt="Lucrare" class="max-h-[500px] rounded-lg shadow-lg" />
+                </div>
+            </div>
+
+           
+            `;
+            
+            content.innerHTML = fullViewHTML;
+            modal.classList.add('show');
+
+        }
+
+        function closeFullViewModal() {
+            const modal = document.getElementById('fullViewModal');
+            modal.classList.remove('show');
+        }
+
+        // Video View Modal Functions
+      function openVideoView(index, icon, title, videoSrc) {
+    const modal = document.getElementById('videoViewModal');
+    const content = modal.querySelector('.modal-content');
+
+    const videoHTML = `
+        <div class="p-4 max-w-2xl mx-auto">
+            
+
+                <!-- Video Player Area -->
+<div class="p-0.5 mb-1.5 ">
+  <div class=" rounded-lg p-4">
+    <video
+      id="videoPlayer"
+      class="w-22 h-auto max-h-[80vh] object-contain bg-black rounded-lg"
+      controls
+autoplay
+    >
+      <source src="${videoSrc}" type="video/mp4" />
+      Browserul tău nu suportă videoclipuri HTML5.
+    </video>
+  </div>
+</div>
+
+
+               
+    `;
+
+    content.innerHTML = videoHTML;
+    modal.classList.add('show');
+
+    // Adaugă funcționalitate de Play după inserare
+    setTimeout(() => {
+        const playButton = document.getElementById('playButton');
+        const video = document.getElementById('videoPlayer');
+
+        if (playButton && video) {
+            playButton.addEventListener('click', function () {
+                video.style.display = 'block';
+                playButton.style.display = 'none';
+                video.play();
+            });
+        }
+    }, 0);
+}
+
+
+        function closeVideoViewModal() {
+            const modal = document.getElementById('videoViewModal');
+            modal.classList.remove('show');
+        }
+
+        // Portfolio Gallery Functionality
+        document.querySelectorAll('.portfolio-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                openGalleryModal(category);
+            });
+        });
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on load with slower timing
+            setTimeout(() => {
+                document.querySelectorAll('.candy-card').forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('animate-in');
+                    }, index * 500);
+                });
+            }, 800);
+
+            // Observe slide elements
+            document.querySelectorAll('.slide-up, .slide-left').forEach(item => {
+                observer.observe(item);
+            });
+            
+            // Observe portfolio items
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+
+    <!-- ========================================= -->
+    <!-- 📱 MODIFICĂRI MOBILE FRIENDLY - COPY PASTE UȘOR -->
+    <!-- ========================================= -->
+    <!-- 
+    INSTRUCȚIUNI SIMPLE:
+    1. COPIAZĂ tot ce e între aceste comentarii
+    2. LIPEȘTE în fișierul tău înainte de </body>
+    3. Gata! Ai toate modificările mobile!
+    -->
+    
+    <!-- 📱 CSS MOBILE RESPONSIVE -->
+    <style>
+        /* ========================================= */
+        /* 📱 MOBILE RESPONSIVE ÎMBUNĂTĂȚIRI - VERSIUNEA 15+ */
+        /* ========================================= */
+        /* 🔧 BREAKPOINTS MULTIPLE PENTRU TOATE DISPOZITIVELE */
+        
+        /* 📱 TELEFOANE FOARTE MICI (max-width: 480px) */
+        @media (max-width: 480px) {
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            .floating-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 2rem;
+            }
+            
+            .title-candy {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .title-candy-left {
+                left: -35px;
+            }
+            
+            .title-candy-right {
+                right: -35px;
+            }
+            
+            .floating-shape {
+                display: none;
+            }
+            
+            .lollipop-candy {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .glass-candy {
+                width: 15px !important;
+                height: 15px !important;
+            }
+            
+            .candy-card {
+                padding: 1rem !important;
+                margin-bottom: 1rem;
+            }
+            
+            .modal-content {
+                margin: 0.5rem;
+                max-width: calc(100% - 1rem);
+                max-height: calc(100% - 1rem);
+                padding: 1rem;
+            }
+            
+            .grid {
+                gap: 0.75rem;
+            }
+            
+            .space-y-6 > * + * {
+                margin-top: 1rem;
+            }
+            
+            .space-y-4 > * + * {
+                margin-top: 0.75rem;
+            }
+            
+            .text-3xl {
+                font-size: 1.5rem;
+            }
+            
+            .text-4xl {
+                font-size: 1.75rem;
+            }
+            
+            .text-5xl {
+                font-size: 2rem;
+            }
+            
+            .text-6xl {
+                font-size: 2.25rem;
+            }
+        }
+        
+        /* 📱 TELEFOANE STANDARD (max-width: 640px) */
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .floating-circle {
+                width: 120px;
+                height: 120px;
+                font-size: 2.5rem;
+            }
+            
+            .title-candy {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .title-candy-left {
+                left: -40px;
+            }
+            
+            .title-candy-right {
+                right: -40px;
+            }
+            
+            .floating-shape {
+                display: none;
+            }
+            
+            .lollipop-candy {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .glass-candy {
+                width: 20px !important;
+                height: 20px !important;
+            }
+            
+            .candy-card {
+                border-radius: 15px;
+            }
+            
+            .candy-button {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.875rem;
+            }
+            
+            .skill-bar {
+                height: 6px;
+            }
+            
+            .trophy {
+                font-size: 2rem;
+            }
+            
+            .portfolio-item {
+                border-radius: 15px;
+            }
+            
+            .portfolio-item .candy-card {
+                height: 180px;
+            }
+            
+            .thumbnail-item .candy-card {
+                height: 100px;
+                padding: 0.5rem;
+            }
+            
+            .thumbnail-item .text-3xl {
+                font-size: 1.5rem;
+            }
+            
+            .thumbnail-item .text-xs {
+                font-size: 0.625rem;
+            }
+        }
+        
+        /* 📱 TABLETE MICI (max-width: 768px) */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 1rem;
+                max-width: calc(100% - 2rem);
+                max-height: calc(100% - 2rem);
+                overflow-y: auto;
+            }
+            
+            .floating-circle {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+            
+            .grid.grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid.grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid.grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid.grid-cols-5 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .aspect-video {
+                aspect-ratio: 16/9;
+                min-height: 200px;
+            }
+            
+            .text-8xl {
+                font-size: 3rem;
+            }
+            
+            .text-6xl {
+                font-size: 2.5rem;
+            }
+            
+            .candy-card .text-4xl {
+                font-size: 2rem;
+            }
+            
+            .flex.flex-col.sm\\:flex-row {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .flex.flex-col.sm\\:flex-row .candy-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        /* 📱 TABLETE MARI (641px - 1024px) */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .floating-circle {
+                width: 180px;
+                height: 180px;
+                font-size: 3.5rem;
+            }
+            
+            .grid.grid-cols-5 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .candy-card {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* 👆 TOUCH-FRIENDLY ÎMBUNĂTĂȚIRI */
+        @media (hover: none) and (pointer: coarse) {
+            .candy-button {
+                min-height: 44px;
+                min-width: 44px;
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .thumbnail-item {
+                min-height: 44px;
+            }
+            
+            .portfolio-btn {
+                min-height: 44px;
+                padding: 0.75rem 1rem;
+            }
+            
+            .candy-card:hover {
+                transform: none;
+            }
+            
+            .portfolio-item:hover {
+                transform: none;
+            }
+            
+            .candy-button:hover {
+                transform: none;
+            }
+        }
+        
+        /* 🔄 ORIENTARE LANDSCAPE PENTRU TELEFOANE */
+        @media (max-width: 896px) and (orientation: landscape) {
+            .floating-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 2rem;
+            }
+            
+            .candy-card {
+                padding: 1rem;
+            }
+            
+            .modal-content {
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            
+            .py-16 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            
+            .py-20 {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+        }
+        
+        /* 📱 ECRANE FOARTE ÎNGUSTE (max-width: 360px) */
+        @media (max-width: 360px) {
+            .container {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            
+            .candy-card {
+                padding: 0.75rem !important;
+                border-radius: 12px;
+            }
+            
+            .floating-circle {
+                width: 80px;
+                height: 80px;
+                font-size: 1.5rem;
+            }
+            
+            .text-3xl {
+                font-size: 1.25rem;
+            }
+            
+            .text-2xl {
+                font-size: 1.125rem;
+            }
+            
+            .candy-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+            }
+            
+            .grid.grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid.grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .thumbnail-item .candy-card {
+                height: 80px;
+                padding: 0.25rem;
+            }
+            
+            .thumbnail-item .text-3xl {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+    
+    <!-- 📱 JAVASCRIPT MOBILE MENU - COPIAZĂ ÎN <script> -->
+    <script>
+        // 📱 Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // Close mobile menu when clicking on a link
+                document.querySelectorAll('#mobileMenu a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        });
+    </script>
+    
+    <!-- 📱 HTML MOBILE MENU - ÎNLOCUIEȘTE HEADER-UL EXISTENT -->
+    <!-- 
+    GĂSEȘTE în fișierul tău <header> și înlocuiește cu:
+    
+    <header class="relative z-10 py-8">
+        <nav class="container mx-auto px-6">
+            <div class="candy-card p-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-3xl font-bold text-white">Teea</h1>
+                    
+                    <div class="hidden md:flex space-x-6 items-center">
+                        <a href="#acasa" class="text-white hover:text-pink-100 transition-colors">Acasă</a>
+                        <a href="#despre" class="text-white hover:text-pink-100 transition-colors">Despre</a>
+                        <a href="#portofoliu" class="text-white hover:text-pink-100 transition-colors">Portofoliu</a>
+                        <a href="#abilitati" class="text-white hover:text-pink-100 transition-colors">Abilități</a>
+                        <a href="#contact" class="text-white hover:text-pink-100 transition-colors">Contact</a>
+                    </div>
+                    
+                    <button id="mobileMenuBtn" class="md:hidden text-white text-2xl">
+                        ☰
+                    </button>
+                </div>
+                
+                <div id="mobileMenu" class="hidden mt-4 space-y-3">
+                    <a href="#acasa" class="block text-white hover:text-pink-100 transition-colors py-2">Acasă</a>
+                    <a href="#despre" class="block text-white hover:text-pink-100 transition-colors py-2">Despre</a>
+                    <a href="#portofoliu" class="block text-white hover:text-pink-100 transition-colors py-2">Portofoliu</a>
+                    <a href="#abilitati" class="block text-white hover:text-pink-100 transition-colors py-2">Abilități</a>
+                    <a href="#contact" class="block text-white hover:text-pink-100 transition-colors py-2">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    -->
+    
+    <!-- 📱 CLASELE RESPONSIVE PENTRU HTML - ADAUGĂ LA ELEMENTELE EXISTENTE -->
+    <!-- 
+    GĂSEȘTE în fișierul tău și ADAUGĂ aceste clase:
+    
+    1. La butoanele din Hero Section:
+       <div class="flex flex-col sm:flex-row gap-4 sm:space-x-4 sm:justify-center">
+    
+    2. La category buttons din Portfolio:
+       <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+    
+    3. La portfolio grid:
+       <div class="portfolio-gallery grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
+    
+    4. La skills grid:
+       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-8">
+    
+    5. La contact grid:
+       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-center">
+    
+    6. La footer grid:
+       <div class="grid md:grid-cols-3 gap-8 mb-8">
+    
+    7. La objectives grid:
+       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+    -->
+    
+    <!-- ========================================= -->
+    <!-- 📱 SFÂRȘIT MODIFICĂRI MOBILE FRIENDLY -->
+    <!-- ========================================= -->
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9675bac243e95ba9',t:'MTc1Mzg4NzY2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
